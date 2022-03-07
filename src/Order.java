@@ -7,13 +7,19 @@ public class Order {
 
     public void AddProduct(Product product)
     {
+        boolean duplicate = false;
+
         for (Product item : Products) {
             if (item.Id == product.Id)
             {
+                duplicate = true;
                 item.Quantity++;
-            } else {
-                Products.add(product);
             }
+        }
+
+        if (!duplicate)
+        {
+            Products.add(product);
         }
 
         CalculateTotal();
